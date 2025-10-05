@@ -1,4 +1,65 @@
-Öğrenci No:
-AD-SOYAD:
-
+Öğrenci No: 250541011
+AD-SOYAD: Aylin Akagündüz
+seçtiğim algoritma: sınav çalışma planı
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+Başla
+
+// 1. Girdileri al
+SınavTarihi ← kullanıcıdan al
+BugününTarihi ← sistem tarihi
+ToplamGün ← SınavTarihi - BugününTarihi
+
+DersListesi ← kullanıcıdan dersleri al (örnek: [Matematik, Fizik, Kimya])
+HerDersİçin EksiklikSkoru ← kullanıcıdan her ders için 1-10 arası değer al
+GünlükÇalışmaSüresi ← kullanıcıdan al (saat cinsinden)
+
+// 2. Öncelik sırasına göre dersleri sırala
+DersListesi ← DersListesi’ni EksiklikSkoruna göre azalan sırayla sırala
+
+// 3. Eksiklik skorlarının toplamını hesapla (günlük oransal dağıtım için)
+ToplamEksiklikSkoru ← tüm EksiklikSkoru değerlerinin toplamı
+
+// 4. Planlama başlasın
+Plan ← boş liste
+
+GÜN ← 1'den ToplamGün’e kadar döngü başlat:
+
+    GünlükPlan ← boş liste
+    KalanSaat ← GünlükÇalışmaSüresi
+
+    DersIndex ← 0
+
+    Ders sayısı kadar döngü başlat:
+
+        Eğer KalanSaat > 0 ise:
+            Ders ← DersListesi[DersIndex]
+            
+            // Eksiklik skoruna göre süre ayarla
+            DersSaati ← (EksiklikSkoru[Ders] / ToplamEksiklikSkoru) * GünlükÇalışmaSüresi
+            
+            Eğer DersSaati > KalanSaat ise:
+                DersSaati ← KalanSaat
+
+            GünlükPlan'e (Ders, DersSaati) ekle
+            KalanSaat ← KalanSaat - DersSaati
+            DersIndex ← DersIndex + 1
+
+        Aksi halde:
+            döngüden çık
+
+    Plan[GÜN] ← GünlükPlan
+
+    // Gün sonu kontrol
+    Kullanıcıdan "Bugünkü hedeflere ulaşıldı mı?" sorusunu sor
+    Eğer cevap "Hayır" ise:
+        Eksik olunan ders(ler)in EksiklikSkoru'nu +1 arttır
+        (maksimum skor 10’u geçmemeli)
+
+Son döngü
+
+// 5. Planı kullanıcıya göster
+Plan’ı kullanıcıya yazdır
+
+Bitir
+
