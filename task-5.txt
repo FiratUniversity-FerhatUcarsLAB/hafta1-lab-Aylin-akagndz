@@ -1,4 +1,63 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541011
+AD-SOYAD:Aylin Akagündüz
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+seçtiğim algoritma: ideal kahve demleme algoritması
+
+Başla
+
+// 1. Kahve ve su miktarını belirle
+Girdi kahveTuru
+Girdi tercihGucu
+
+Eğer kahveTuru = "filtre" ise
+    kahveMiktari = 10 gram / 100 ml su
+    suSicakligi = 92
+    demlemeSuresi = 4 dakika
+Diğer yandan eğer kahveTuru = "espresso" ise
+    kahveMiktari = 18 gram
+    suMiktari = 30 ml
+    suSicakligi = 93
+    demlemeSuresi = 0.5 dakika
+Diğer yandan eğer kahveTuru = "French press" ise
+    kahveMiktari = 15 gram / 250 ml su
+    suSicakligi = 95
+    demlemeSuresi = 4 dakika
+Diğer
+    Yaz "Bilinmeyen kahve türü"
+
+// 2. Tercih gücüne göre kahve miktarını ayarla
+Eğer tercihGucu = "açık" ise
+    kahveMiktari = kahveMiktari * 0.8
+Eğer tercihGucu = "sert" ise
+    kahveMiktari = kahveMiktari * 1.2
+
+// 3. Suyu ısıt
+Yaz "Suyu ısıtılıyor..."
+SuSicakligiGercek = ÖlçSicaklik()
+Eğer SuSicakligiGercek < suSicakligi ise
+    SuyuIsit(suSicakligi - SuSicakligiGercek)
+Diğer
+    Yaz "Sıcaklık uygun"
+
+// 4. Kahveyi hazırlama ve demleme
+KahveyiÖğüt(kahveMiktari, kahveTuru)
+KahveyiEkleyin()
+
+Zaman = 0
+Döngü Zaman < demlemeSuresi dakika
+    Yaz "Demleme devam ediyor: " + Zaman + " dakika"
+    Bekle(1 dakika)
+    Zaman = Zaman + 1
+Döngü sonu
+
+// 5. Kahveyi karıştır veya filtrele
+Eğer kahveTuru = "French press" ise
+    PresleKahveyiAyır()
+Diğer
+    FiltreleKahveyi()
+
+// 6. Servis
+Yaz "Kahve hazır! Afiyet olsun"
+
+Bitir
