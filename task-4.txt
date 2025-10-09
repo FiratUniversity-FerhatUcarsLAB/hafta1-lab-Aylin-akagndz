@@ -1,4 +1,36 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541011
+AD-SOYAD: Aylin Akagündüz
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+seçtiğim algoritma: renkleri karıştırarak hedef renk bulma
+
+Algoritma: Renk_Karıştırma
+Girdi:
+    - AnaRenkler = {Renk1, Renk2, ..., RenkN}  # Her birinin RGB değeri var
+    - HedefRenk (RGB)
+    - HataPayı = 2.0
+    - MaksDeneme = 20
+
+Başla:
+    1. Her ana rengi LAB renk uzayına çevir.
+    2. HedefRenk’i de LAB renk uzayına çevir.
+    3. Her renk için ilk oranı tahmin et (örneğin eşit dağıt).
+    4. Karışımı oluştur ve LAB değerini hesapla.
+    5. Hedef renk ile mevcut karışım arasındaki farkı (ΔE) bul.
+    
+    6. Eğer fark HataPayı’ndan küçükse:
+           SONUÇ = mevcut karışım
+           Bitir.
+       Değilse:
+           Hata yönüne göre hangi rengin artırılacağını belirle:
+              - Eğer karışım daha koyuysa → beyaz oranını artır.
+              - Eğer daha açık veya soluksa → koyu renk oranını artır.
+              - Eğer ton farklıysa → ilgili renk bileşenini artır veya azalt.
+    
+    7. Yeni oranlarla tekrar karıştır.
+    8. ΔE farkını tekrar hesapla.
+    9. Bu işlemi fark HataPayı’ndan küçük olana veya MaksDeneme sayısına ulaşılana kadar tekrarla.
+
+    10. En yakın sonucu ekrana yaz:
+        “En iyi karışım oranları: Renk1=..., Renk2=..., ...”
+Bitir.
