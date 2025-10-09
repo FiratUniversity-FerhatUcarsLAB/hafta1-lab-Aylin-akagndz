@@ -1,4 +1,71 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541011
+AD-SOYAD:Aylin Akagündüz
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+seçtiğim algoritma: müzik koleksiyonunu düzenleme
+
+Başla
+    // 1. Müzik koleksiyonunu yükle
+    Koleksiyon = MüzikDosyalarınıOku()
+
+    // 2. Her şarkıyı sırayla kontrol et ve eksik bilgileri tamamla
+    Her Şarkı için Şarkı in Koleksiyon:
+        Eğer Şarkı.Adı yoksa:
+            Şarkı.Adı = KullanıcıdanAl("Şarkı adını giriniz:")
+        Eğer Şarkı.Sanatçı yoksa:
+            Şarkı.Sanatçı = KullanıcıdanAl("Sanatçıyı giriniz:")
+        Eğer Şarkı.Album yoksa:
+            Şarkı.Album = KullanıcıdanAl("Albümü giriniz:")
+        Eğer Şarkı.Tür yoksa:
+            Şarkı.Tür = KullanıcıdanAl("Türü giriniz:")
+        Eğer Şarkı.Yıl yoksa:
+            Şarkı.Yıl = KullanıcıdanAl("Yılı giriniz:")
+
+        Şarkı.DosyaAdı = Şarkı.Sanatçı + " - " + Şarkı.Adı + ".mp3"
+
+    // 3. Tekrar eden şarkıları kontrol et
+    TekrarEdenler = BoşListe
+    Her Şarkı için Şarkı1 in Koleksiyon:
+        Her Şarkı için Şarkı2 in Koleksiyon:
+            Eğer Şarkı1 != Şarkı2 ve Şarkı1.Adı == Şarkı2.Adı ve Şarkı1.Sanatçı == Şarkı2.Sanatçı:
+                TekrarEdenler.Ekle(Şarkı2)
+
+    Eğer TekrarEdenler boş değilse:
+        KullanıcıyaGöster(TekrarEdenler)
+        SilmekİstiyorMu = KullanıcıdanAl("Tekrar eden şarkıları silmek ister misiniz? (E/H)")
+        Eğer SilmekİstiyorMu == "E":
+            Her Şarkı için Şarkı in TekrarEdenler:
+                Koleksiyon.Sil(Şarkı)
+
+    // 4. Kullanıcıdan sıralama kriterini al
+    SıralamaKriteri = KullanıcıdanAl("Şarkıları hangi kritere göre sıralamak istiyorsunuz? (Ad/Sanatçı/Albüm/Tür/Yıl)")
+
+    // 5. Bubble Sort ile koleksiyonu sırala
+    N = Koleksiyon.uzunluk
+    TekrarYap = True
+    Döngü Başla: TekrarYap
+        TekrarYap = False
+        i = 0
+        Döngü i < N-1:
+            Eğer Koleksiyon[i][SıralamaKriteri] > Koleksiyon[i+1][SıralamaKriteri]:
+                Geçici = Koleksiyon[i]
+                Koleksiyon[i] = Koleksiyon[i+1]
+                Koleksiyon[i+1] = Geçici
+                TekrarYap = True
+            i = i + 1
+    Döngü Bitti
+
+    // 6. Koleksiyonu albüm veya tür bazlı klasörlere ayır
+    Seçim = KullanıcıdanAl("Şarkıları hangi kritere göre klasörleştirmek istiyorsunuz? (Sanatçı/Albüm/Tür)")
+
+    Her Şarkı için Şarkı in Koleksiyon:
+        KlasörAdı = Şarkı[Seçim]
+        Eğer Klasör yoksa:
+            KlasörOluştur(KlasörAdı)
+        Şarkı.DosyasınıTaşı(KlasörAdı)
+
+    // 7. İşlem tamamlandı mesajı
+    Yazdır("Müzik koleksiyonunuz başarıyla düzenlendi ve sıralandı!")
+
+Bitir
+
