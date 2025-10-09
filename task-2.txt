@@ -1,4 +1,37 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541011
+AD-SOYAD:Aylin Akagündüz
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+seçtiğim algoritma: sudoku çözme yaklaşımı 
+
+ BAŞLA
+
+1. Sudoku tablosunu oku. (Boş hücreler 0 olarak kabul edilir.)
+
+2. Eğer tablo tamamen doluysa:
+       Çözüm bulundu, işlemi BİTİR.
+
+3. Henüz dolmamış hücreler arasında,
+       - En az olası değere sahip olan (en az sayı denenebilen) hücreyi seç.
+
+4. Bu hücre için uygun sayıları belirle:
+       - Aynı satırda, sütunda ve 3x3 kutuda olmayan sayılar uygundur.
+
+5. Her uygun sayı için şu işlemleri sırayla yap:
+       a. Sayıyı hücreye yerleştir.
+       b. Yeni tabloyu kontrol et:
+              - Eğer çelişki yoksa (her satır, sütun ve kutuda tekrar eden sayı yoksa):
+                     Sudoku çözümünü tekrar çağır (geri izleme yap).
+                     Eğer çözüm bulunduysa işlemi BİTİR.
+       c. Aksi halde:
+              - Sayıyı sil (geri al) ve sıradaki sayıyı dene.
+
+6. Eğer bu hücre için hiçbir sayı uygun değilse:
+       - Bu adımda çözüm bulunamadı.
+       - Geri dön (bir önceki hücreye) ve orada başka sayı dene.
+
+7. Tüm hücreler dolduğunda:
+       Sudoku tamamen çözülmüştür.
+
+BİTİR
+    
